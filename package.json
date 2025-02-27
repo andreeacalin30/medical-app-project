@@ -1,5 +1,5 @@
 {
-    "name": "directus-medical-system",
+    "name": "medical-app-project",
     "version": "1.0.0",
     "description": "Medical System CMS with Directus",
     "engines": {
