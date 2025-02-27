@@ -1,15 +1,16 @@
 {
-    "name": "medical-app-project",
-    "version": "1.0.0",
-    "description": "Medical System CMS with Directus",
-    "engines": {
-      "node": ">=18.0.0"
-    },
-    "scripts": {
-      "start": "directus start"
-    },
-    "dependencies": {
-      "directus": "^10.5.1",
-      "pg": "^8.11.1"
-    }
+  "name": "directus-medical-system",
+  "version": "1.0.0",
+  "description": "Medical System CMS with Directus",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "npx directus start"
+  },
+  "dependencies": {
+    "directus": "^10.5.2",
+    "pg": "^8.11.1"
   }
+}
