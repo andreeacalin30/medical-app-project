@@ -25,5 +25,5 @@ RUN npm install -g directus
 # Expose the port
 EXPOSE 8055
 
-# Start Directus directly (no script file needed)
-CMD ["npx", "directus", "start"]
+# Bootstrap and start Directus 
+CMD npx directus bootstrap && npx directus start
