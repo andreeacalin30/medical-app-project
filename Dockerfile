@@ -1,18 +1,29 @@
-FROM directus/directus:latest
+FROM node:18-alpine
 
-COPY package.json .
-COPY schema.sql /schema.sql
+WORKDIR /directus
 
-ENV PORT=8055
-ENV PUBLIC_URL="https://railway-url.up.railway.app"
-ENV DB_CLIENT="railway"
-ENV ADMIN_EMAIL="calinmadalina30@gmail.com"
-ENV ADMIN_PASSWORD="vCAihpGVGtSFrasyogkfaUMdThrJNxIa"
-ENV KEY="random-key-string"
-ENV SECRET="random-secret-string"
+# Install required packages
+RUN apk add --no-cache \
+    python3 \
+    build-base \
+    g++ \
+    cairo-dev \
+    jpeg-dev \
+    pango-dev \
+    giflib-dev
 
-# If you want to pre-load your schema
-# RUN apt-get update && apt-get install -y postgresql-client
-# RUN PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -U $DB_USER -d $DB_DATABASE -f /schema.sql
+# Copy package files
+COPY package.json ./
+COPY schema.sql ./
 
+# Install dependencies
+RUN npm install
+
+# Install Directus globally to ensure it's in PATH
+RUN npm install -g directus
+
+# Expose the port
+EXPOSE 8055
+
+# Bootstrap and start Directus 
 CMD npx directus bootstrap && npx directus start
